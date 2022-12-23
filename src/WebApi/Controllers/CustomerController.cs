@@ -19,5 +19,11 @@ namespace WebApi.Controllers
             return Ok(await _mediator.Send(input, cancellationToken));
         }
 
+        [HttpPost("Update")]
+        public async Task<IActionResult> UpdateAsync(UpdateCustomerInput input, CancellationToken cancellationToken)
+        {
+            return Ok(await _mediator.Send(input, cancellationToken));
+        }
+
     }
 }

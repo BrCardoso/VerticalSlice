@@ -13,6 +13,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDatabase(configuration);
 builder.Services.AddCreateCustomer();
+builder.Services.AddUpdateCustomer();
 builder.Services.AddMediatRExtension();
 
 var app = builder.Build();
