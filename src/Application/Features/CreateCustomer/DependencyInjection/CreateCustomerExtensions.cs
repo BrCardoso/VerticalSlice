@@ -1,11 +1,13 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Application.Features.CreateCustomer.Repository;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Application.Features.CreateCustomer.DependencyInjection
 {
     public static class CreateCustomerExtensions
     {
-        private static IServiceCollection AddCreateCustomer(IServiceCollection services)
+        public static IServiceCollection AddCreateCustomer(this IServiceCollection services)
         {
+            services.AddScoped<ICreateCustomerRepository, CreateCustomerRepository>();
             return services;
         }
     }

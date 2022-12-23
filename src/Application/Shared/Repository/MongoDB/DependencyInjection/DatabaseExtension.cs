@@ -5,9 +5,12 @@ namespace Application.Shared.Repository.MongoDB.DependencyInjection
 {
     public static class DatabaseExtension
     {
-        public static IServiceCollection AddDatabase(IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddSingleton(s => new MongoContext(configuration.GetSection("mongoConnectionString").Value));
+
+            services.Configure<MongoSettings>(
+                configuration.GetSection("Mongo"));
+            services.AddSingleton<IMongoContext, MongoContext>();
             return services;
         }
     }

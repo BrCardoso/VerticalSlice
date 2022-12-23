@@ -1,16 +1,18 @@
-﻿using MongoDB.Driver;
+﻿using Microsoft.Extensions.Options;
+using MongoDB.Driver;
 
 namespace Application.Shared.Repository.MongoDB
 {
     public class MongoContext : IMongoContext
     {
-        private readonly MongoClient _mongoClient;
-        public MongoContext(string cnnString)
+        private readonly IMongoDatabase _mongoDatabase;
+        public MongoContext(IOptions<MongoSettings> settings)
         {
-            _mongoClient = new MongoClient(cnnString);
+            var client = new MongoClient(settings.Value.ConnectionString);
+            _mongoDatabase = client.GetDatabase(settings.Value.Database);
         }
 
-        public IMongoDatabase GetCustomerDB() =>
-            _mongoClient.GetDatabase(Databases.Customer);
+        public IMongoCollection<T> GetCustomerCollection<T>() =>
+            _mongoDatabase.GetCollection<T>(Databases.Customer);
     }
 }
