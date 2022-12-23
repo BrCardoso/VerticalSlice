@@ -1,5 +1,6 @@
 using Application.Shared.Repository.MongoDB.DependencyInjection;
 using Application.Features.CreateCustomer.DependencyInjection;
+using Application.Shared.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDatabase(configuration);
 builder.Services.AddCreateCustomer();
+builder.Services.AddMediatRExtension();
 
 var app = builder.Build();
 
