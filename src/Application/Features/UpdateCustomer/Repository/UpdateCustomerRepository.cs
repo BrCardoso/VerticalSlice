@@ -16,8 +16,10 @@ namespace Application.Features.UpdateCustomer.Repository
 
         public void Create(CustomerModel input, CancellationToken cancelationToken)
         {
-            _customerMongoCollection.ReplaceOne(
-                FilterDefinition<CustomerModel>.Empty,
+            FilterDefinition<CustomerModel> filter = Builders<CustomerModel>.Filter.Where(c => c.Id == input.Id);
+
+            _customerMongoCollection.ReplaceOneAsync(
+                filter,
                 input,
                 new ReplaceOptions { IsUpsert = true },
                 cancelationToken);

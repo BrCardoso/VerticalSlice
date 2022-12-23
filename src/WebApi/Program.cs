@@ -1,6 +1,7 @@
 using Application.Shared.Repository.MongoDB.DependencyInjection;
 using Application.Features.CreateCustomer.DependencyInjection;
 using Application.Shared.DependencyInjection;
+using Application.Features.UpdateCustomer.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
